@@ -1,0 +1,44 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "IO多路复用 启动",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/IO多路复用事件驱动/server",
+        "args": ["8888"],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
+    },
+    {
+        "name": "预线程化事件驱动 启动",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/预线程化事件驱动/server",
+        "args": ["8899"],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
+    },
+    {
+        "name": "lshSbufTest",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/lshSbuf/main",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
+    }
+    
+]
+}

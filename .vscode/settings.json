@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "select.h": "c",
+        "lshio.h": "c",
+        "stat.h": "c",
+        "fstream": "c",
+        "locale": "c",
+        "proc_info.h": "c",
+        "types.h": "c",
+        "_pthread_types.h": "c",
+        "pthread.h": "c",
+        "signal.h": "c",
+        "cdefs.h": "c",
+        "__mutex_base": "c",
+        "__config": "c",
+        "cstdlib": "c",
+        "new": "c",
+        "ostream": "c",
+        "lshsbuf.h": "c"
+    }
+}
