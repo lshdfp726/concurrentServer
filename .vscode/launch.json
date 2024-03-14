@@ -38,6 +38,18 @@
         "environment": [],
         "externalConsole": false,
         "MIMode": "lldb"
+    },
+    {
+        "name": "吸烟者问题",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/吸烟者问题/main",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
     }
     
 ]
