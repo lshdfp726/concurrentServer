@@ -18,12 +18,15 @@ void lshSbuf_init(lshSbuf *sp, int n, const char *name) {
     char *mutex_items = malloc(strlen(name) + strlen("_items")+ 1);;
     sprintf(mutex_name, "%s_mutex",name);
     sp->mutex = lshSemo_open(mutex_name, O_CREAT, 0644, 1);
-    
+    sp->mutexName = mutex_name;
+
     sprintf(mutex_slots, "%s_lots",name);
     sp->slots = lshSemo_open(mutex_slots, O_CREAT, 0644, 1);
+    sp->slotsName = mutex_slots;
 
     sprintf(mutex_items, "%s_items",name);
     sp->items = lshSemo_open(mutex_items, O_CREAT, 0644, 1);
+    sp->itemsName = mutex_items;
 }
 
 sem_t * lshSemo_open(const char *name, int oflag, mode_t mode, unsigned int value) {
@@ -33,9 +36,7 @@ sem_t * lshSemo_open(const char *name, int oflag, mode_t mode, unsigned int valu
         printf("errno: %d\n", errno);
         return NULL;
     }
-    if (name) {
-        free((void *)name);
-    }
+
     return s;
 }
 
@@ -44,15 +45,29 @@ void lshSbuf_deInit(lshSbuf *sp) {
     if (sp->buf) {
         free(sp->buf);
     }
+
     if (sp->mutex) {
+        if (sp->mutexName) {
+            sem_unlink(sp->mutexName);
+            free((void *)sp->mutexName);
+        }
         free(sp->mutex);
     }
     if (sp->slots) {
+        if (sp->slotsName) {
+            sem_unlink(sp->slotsName);
+            free((void *)sp->slotsName);
+        }
         free(sp->slots);
     }
     if (sp->items) {
+        if (sp->itemsName) {
+            sem_unlink(sp->itemsName);
+            free((void *)sp->itemsName);
+        }
         free(sp->items);
     }   
+
 }
 
 void lshSbuf_insert(lshSbuf *sp, int item) {

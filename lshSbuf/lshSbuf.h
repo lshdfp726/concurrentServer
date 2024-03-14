@@ -10,8 +10,11 @@ typedef struct lshSbuf
     int front;  //buf[(front + 1)%n] is first item
     int rear;   //buf[rear%n] is last item
     sem_t *mutex; //protects accesses to buf
+    const char *mutexName;
     sem_t *slots; //Counts available slots
+    const char *slotsName;
     sem_t *items; //Counts available items
+    const char *itemsName;
 } lshSbuf;
 
 /**
