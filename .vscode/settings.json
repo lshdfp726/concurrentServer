@@ -17,6 +17,10 @@
         "cstdlib": "c",
         "new": "c",
         "ostream": "c",
-        "lshsbuf.h": "c"
-    }
+        "lshsbuf.h": "c",
+        "__bit_reference": "c",
+        "bitset": "c",
+        "unordered_map": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

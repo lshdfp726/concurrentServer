@@ -14,6 +14,7 @@
  * 试用信号量的P、V操作设计该问题的同步算法，给出所用共享变量(如果需要)和_吸烟者问题
  * 
  * 这里核心问题就是一个: 当前抽烟者手里拿的资源，然后这个资源准备好之后，让供应者释放资源信号。所以互斥的信号量是当前抽烟人手里的资源，而不是另外两种资源。
+ * 代理商放资源需要抽烟者线程激活。抽烟者线程也靠代理商当前手里的资源激活，形成另类互斥。
  */
 
 sem_t *tobacco_sem, *paper_sem, *match_sem, *agent_sem;
@@ -30,6 +31,7 @@ int main(int argc, char const *argv[]) {
     match_sem = sem_open("match_sem", O_CREAT | O_EXCL, 0666, 0);
 
     sem_unlink("agent_sem");
+    //代理商始终有一个
     agent_sem = sem_open("agent_sem", O_CREAT | O_EXCL , 0666, 1);
     
     pthread_t agent_thread, smoker_thread[3];

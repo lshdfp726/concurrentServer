@@ -17,15 +17,20 @@ void lshSbuf_init(lshSbuf *sp, int n, const char *name) {
     char *mutex_slots = malloc(strlen(name) + strlen("_slots") + 1);
     char *mutex_items = malloc(strlen(name) + strlen("_items")+ 1);;
     sprintf(mutex_name, "%s_mutex",name);
-    sp->mutex = lshSemo_open(mutex_name, O_CREAT, 0644, 1);
+
+    //上次由于某个原因导致未调用lshSbuf_deInit来unlink. 那么调用lshSemo_open会出现问题
+    sem_unlink(mutex_name);
+    sp->mutex = lshSemo_open(mutex_name, O_CREAT | O_EXCL, 0644, 1);
     sp->mutexName = mutex_name;
 
     sprintf(mutex_slots, "%s_lots",name);
-    sp->slots = lshSemo_open(mutex_slots, O_CREAT, 0644, 1);
+    sem_unlink(mutex_slots);
+    sp->slots = lshSemo_open(mutex_slots, O_CREAT | O_EXCL, 0644, 1);
     sp->slotsName = mutex_slots;
 
     sprintf(mutex_items, "%s_items",name);
-    sp->items = lshSemo_open(mutex_items, O_CREAT, 0644, 1);
+    sem_unlink(mutex_items);
+    sp->items = lshSemo_open(mutex_items, O_CREAT | O_EXCL, 0644, 1);
     sp->itemsName = mutex_items;
 }
 
