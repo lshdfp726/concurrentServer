@@ -8,7 +8,7 @@
 
 #define NUM_PHILOSOPHERS 5
 
-pthread_mutex_t forks[NUM_PHILOSOPHERS]; //叉子的互斥锁
+pthread_mutex_t forks[NUM_PHILOSOPHERS]; //每个叉子资源访问的互斥锁
 sem_t *max_philosophers; //限制同时最多哲学家进餐人数
  
 static void *philosopher(void *arg) {
